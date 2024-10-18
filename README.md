@@ -1,1 +1,1 @@
-<center><h1>Emotion Detection ML</h1></center>
+<h1><center>Emotion Detection ML</center></h1>
