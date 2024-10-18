@@ -21,25 +21,23 @@ warnings.filterwarnings('ignore')
 
 import streamlit as st
 
+# Set layout to wide mode
+st.set_page_config(layout="wide")
+
 # Create two columns
-col1, col2, col3 = st.columns([4, 1, 4])
+col1, col2 = st.columns(2)
 
 # Add content to the first column
 with col1:
     st.markdown("<h2 style='text-align: center;'>Working Model</h2>", unsafe_allow_html=True)
     st.write("webcam here")
+    st.write("prediction")
+    st.write("Dataset (images)")
 
-# Adding a divider between two columns
+# Add content to the second column
 with col2:
-    st.markdown(
-        "<div style='height: 100%; width: 10px; background-color: black; margin: auto;'></div>",
-        unsafe_allow_html=True
-    )
-
-
-# Add content to the third column
-with col3:
     st.markdown("<h2 style='text-align: center;'>Code</h2>", unsafe_allow_html=True)
+    st.markdown("Importing Libraries")
     st.code(
         """
         import pandas as pd
