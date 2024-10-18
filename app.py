@@ -16,7 +16,9 @@ with col1:
 # Add content to the second column
 with col2:
     st.markdown("<h2 style='text-align: center;'>Code</h2>", unsafe_allow_html=True)
+    
     st.markdown("Importing Libraries")
+    
     st.code(
         """
         import pandas as pd
@@ -39,3 +41,5 @@ import warnings
 warnings.filterwarnings('ignore')
         """
     )
+
+    st.markdown("")
