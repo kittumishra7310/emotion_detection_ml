@@ -5,3 +5,6 @@ enableXsrfProtection = false
 
 [theme]
 base="dark"
+
+[layout]
+wide = true
