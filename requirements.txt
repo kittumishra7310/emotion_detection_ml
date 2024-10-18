@@ -1,0 +1,7 @@
+tensorflow==2.17.0
+streamlit==1.39.0
+streamlit-webrtc==0.47.9
+seaborn==0.13.2
+scikit-learn==1.5.1
+pandas==2.2.2
+matplotlib==3.9.0
