@@ -204,13 +204,6 @@ if uploaded_file is not None:
         # Display the predicted emotion
         st.write(f"The predicted emotion is: **{predicted_emotion}**")
 
-        # Display the input image with the predicted emotion
-        # plt.figure(figsize=(1, 1))
-        # plt.imshow(img_resized)
-        # plt.title(f"Predicted Emotion: {predicted_emotion}", fontsize=10)
-        # plt.axis('off')  # Turn off the axes for a cleaner display
-        # st.pyplot(plt)
-
     # After the prediction, display the sample images from the dataset
     with col1:
         st.markdown("<h3 style='text-align: center;'>Displaying Sample Images from the Dataset</h3>", unsafe_allow_html=True)
@@ -249,7 +242,7 @@ if uploaded_file is not None:
         def display_samples_per_class(dataframe, n=2):
             sample_data = dataframe.groupby('label', group_keys=False).apply(lambda x: x.sample(n))
             # Create a subplot for each image
-            fig, axes = plt.subplots(len(sample_data['label'].unique()), n, figsize=(10, 10))
+            fig, axes = plt.subplots(len(sample_data['label'].unique()), n, figsize=(6, 6))
             fig.suptitle("Sample Images from Each Class", fontsize=16)
 
             for i, (idx, row) in enumerate(sample_data.iterrows()):
@@ -257,10 +250,10 @@ if uploaded_file is not None:
                 pixels = np.array(row['pixels']).reshape(48, 48)
                 ax = axes[i // n, i % n]
                 ax.imshow(pixels, cmap='gray')
-                ax.set_title(label)
+                ax.set_title(label, fontsize=10)
                 ax.axis('off')
 
-            plt.tight_layout()
+            plt.tight_layout(pad=1.0)
             st.pyplot(fig)  # Display the plot using Streamlit
 
         # Select dataset to view
