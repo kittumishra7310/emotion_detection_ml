@@ -59,7 +59,7 @@ with col1:
     )
 
 
-    st.write("Press 'q' in the video window to quit.")
+    st.write("Press 'q' in the video window to quit.")
     
     @st.cache_data
     def load_images_from_directory(directory):
