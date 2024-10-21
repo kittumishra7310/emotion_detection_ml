@@ -1,5 +1,7 @@
 # Emotion Detection using Machine Learning
 
+Currently, this project only takes in images which then gets predicted by the model, we are working on the live webcam feed. [ issue:#1 ]
+
 This project implements an emotion detection system using machine learning and computer vision techniques. The system captures real-time video through a webcam, processes the input frames, and predicts the emotion displayed on the user's face.
 
 ## Table of Contents
