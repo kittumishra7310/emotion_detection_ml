@@ -10,7 +10,7 @@ import pandas as pd
 import os
 
 # Set layout to wide mode
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide", page_title="Emotion Detection | ML Model", page_icon="😃")
 
 # Streamlit app title
 st.html("<center><h1>Facial Emotion Recognition</h1></center>")
