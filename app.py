@@ -62,62 +62,61 @@ if uploaded_file is not None:
         st.write(f"The predicted emotion is: **{predicted_emotion}**")
 
     # After the prediction, display the sample images from the dataset
-    with col1:
-        st.markdown("<h3 style='text-align: center;'>Displaying Sample Images from the Dataset</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center;'>Displaying Sample Images from the Dataset</h3>", unsafe_allow_html=True)
 
-        @st.cache_data
-        def load_images_from_directory(directory):
-            data = []
-            for label in os.listdir(directory):
-                label_path = os.path.join(directory, label)
-                if os.path.isdir(label_path):
-                    for filename in os.listdir(label_path):
-                        if filename.endswith((".jpg", ".png", ".jpeg")):
-                            img_path = os.path.join(label_path, filename)
-                            # Read and resize image to 48x48 pixels
-                            img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
-                            img = cv2.resize(img, (48, 48))
-                            # Flatten image to a 1D array
-                            img_flat = img.flatten()
-                            data.append([img_flat, label])
-            return pd.DataFrame(data, columns=["pixels", "label"])
+    @st.cache_data
+    def load_images_from_directory(directory):
+        data = []
+        for label in os.listdir(directory):
+            label_path = os.path.join(directory, label)
+            if os.path.isdir(label_path):
+                for filename in os.listdir(label_path):
+                    if filename.endswith((".jpg", ".png", ".jpeg")):
+                        img_path = os.path.join(label_path, filename)
+                        # Read and resize image to 48x48 pixels
+                        img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
+                        img = cv2.resize(img, (48, 48))
+                        # Flatten image to a 1D array
+                        img_flat = img.flatten()
+                        data.append([img_flat, label])
+        return pd.DataFrame(data, columns=["pixels", "label"])
 
-        # Directory paths for train and test sets
-        train_dir = "C:/Users/hamid/OneDrive/Desktop/emotion_dataset/train"
-        test_dir = "C:/Users/hamid/OneDrive/Desktop/emotion_dataset/test"
+    # Directory paths for train and test sets
+    train_dir = "C:/Users/hamid/OneDrive/Desktop/emotion_dataset/train"
+    test_dir = "C:/Users/hamid/OneDrive/Desktop/emotion_dataset/test"
 
-        # Load datasets
-        train_df = load_images_from_directory(train_dir)
-        test_df = load_images_from_directory(test_dir)
+    # Load datasets
+    train_df = load_images_from_directory(train_dir)
+    test_df = load_images_from_directory(test_dir)
 
-        # Streamlit App Layout
-        st.title("Image Classification Dataset Viewer")
-        st.write(f"Train DataFrame shape: {train_df.shape}")
-        st.write(f"Test DataFrame shape: {test_df.shape}")
+    # Streamlit App Layout
+    st.title("Image Classification Dataset Viewer")
+    st.write(f"Train DataFrame shape: {train_df.shape}")
+    st.write(f"Test DataFrame shape: {test_df.shape}")
 
-        # Function to display samples using Streamlit
-        def display_samples_per_class(dataframe, n=2):
-            sample_data = dataframe.groupby('label', group_keys=False).apply(lambda x: x.sample(n))
-            # Create a subplot for each image
-            fig, axes = plt.subplots(len(sample_data['label'].unique()), n, figsize=(6, 6))
-            fig.suptitle("Sample Images from Each Class", fontsize=16)
+    # Function to display samples using Streamlit
+    def display_samples_per_class(dataframe, n=2):
+        sample_data = dataframe.groupby('label', group_keys=False).apply(lambda x: x.sample(n))
+        # Create a subplot for each image
+        fig, axes = plt.subplots(len(sample_data['label'].unique()), n, figsize=(6, 6))
+        fig.suptitle("Sample Images from Each Class", fontsize=16)
 
-            for i, (idx, row) in enumerate(sample_data.iterrows()):
-                label = row['label']
-                pixels = np.array(row['pixels']).reshape(48, 48)
-                ax = axes[i // n, i % n]
-                ax.imshow(pixels, cmap='gray')
-                ax.set_title(label, fontsize=10)
-                ax.axis('off')
+        for i, (idx, row) in enumerate(sample_data.iterrows()):
+            label = row['label']
+            pixels = np.array(row['pixels']).reshape(48, 48)
+            ax = axes[i // n, i % n]
+            ax.imshow(pixels, cmap='gray')
+            ax.set_title(label, fontsize=10)
+            ax.axis('off')
 
-            plt.tight_layout(pad=1.0)
-            st.pyplot(fig)  # Display the plot using Streamlit
+        plt.tight_layout(pad=1.0)
+        st.pyplot(fig)  # Display the plot using Streamlit
 
-        # Select dataset to view
-        dataset_option = st.selectbox("Select Dataset", ("Train", "Test"))
+    # Select dataset to view
+    dataset_option = st.selectbox("Select Dataset", ("Train", "Test"))
 
-        # Display 2 samples per class based on selected dataset
-        if dataset_option == "Train":
-            display_samples_per_class(train_df, n=2)
-        else:
-            display_samples_per_class(test_df, n=2)
+    # Display 2 samples per class based on selected dataset
+    if dataset_option == "Train":
+        display_samples_per_class(train_df, n=2)
+    else:
+        display_samples_per_class(test_df, n=2)
