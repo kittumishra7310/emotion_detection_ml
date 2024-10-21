@@ -17,8 +17,6 @@ col1, col2 = st.columns([4, 2])
 
 # Add content to the first column
 with col1:
-    st.markdown("<h2 style='text-align: center;'>Working Model</h2>", unsafe_allow_html=True)
-    
     # Load the correct pre-trained model
     model = load_model("C:/Users/hamid/Downloads/model.keras")
 
@@ -61,6 +59,7 @@ if uploaded_file is not None:
         # Display the predicted emotion
         st.write(f"The predicted emotion is: **{predicted_emotion}**")
 
+with col1:
     # After the prediction, display the sample images from the dataset
     st.markdown("<h3 style='text-align: center;'>Displaying Sample Images from the Dataset</h3>", unsafe_allow_html=True)
 
@@ -98,7 +97,8 @@ if uploaded_file is not None:
     def display_samples_per_class(dataframe, n=2):
         sample_data = dataframe.groupby('label', group_keys=False).apply(lambda x: x.sample(n))
         # Create a subplot for each image
-        fig, axes = plt.subplots(len(sample_data['label'].unique()), n, figsize=(6, 6))
+        num_classes = len(sample_data['label'].unique())
+        fig, axes = plt.subplots(len(sample_data['label'].unique()), n, figsize=(n * 1.5, num_classes * 1.5))
         fig.suptitle("Sample Images from Each Class", fontsize=16)
 
         for i, (idx, row) in enumerate(sample_data.iterrows()):
