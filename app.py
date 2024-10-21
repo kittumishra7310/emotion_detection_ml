@@ -11,8 +11,10 @@ import os
 
 st.set_page_config(layout="wide", page_title="Emotion Detection | ML Model", page_icon="😃")
 
+# Navigation Bar
 selection = st.selectbox("Navigation", ["Home", "Code", "Dataset", "About"])
 
+# Home Page
 if selection == "Home":
     st.html("<center><h1>Facial Emotion Recognition</h1></center><hr>")
     model = load_model("model.keras")
@@ -52,8 +54,7 @@ if selection == "Home":
         # Display the predicted emotion
         st.write(f"The predicted emotion is: **{predicted_emotion}**")
 
-
-
+# Code Snippets Page
 elif selection == "Code":
     st.html("<center><h1>Code Snippets</h1></center><hr>")
 
@@ -166,13 +167,13 @@ elif selection == "Code":
 
     width = 150
     with st.expander("Output:"):
-        st.image("C:/Users/hamid/Downloads/emotion_dataset/train/angry/im0.png", width=width)
-        st.image("c:/Users/hamid/Downloads/emotion_dataset/train/disgusted/im0.png", width=width)
-        st.image("c:/Users/hamid/Downloads/emotion_dataset/train/fearful/im0.png", width=width)
-        st.image("c:/Users/hamid/Downloads/emotion_dataset/train/happy/im0.png", width=width)
-        st.image("c:/Users/hamid/Downloads/emotion_dataset/train/neutral/im6.png", width=width)
-        st.image("c:/Users/hamid/Downloads/emotion_dataset/train/sad/im1.png", width=width)
-        st.image("c:/Users/hamid/Downloads/emotion_dataset/train/surprised/im2.png", width=width)
+        st.image("images/im0.png", width=width)
+        st.image("images/im1.png", width=width)
+        st.image("images/im2.png", width=width)
+        st.image("images/im3.png", width=width)
+        st.image("images/im4.png", width=width)
+        st.image("images/im5.png", width=width)
+        st.image("images/im6.png", width=width)
 
     st.write("We are now adding early stopping criteria and a model checkpoint")
     st.code("""
@@ -272,7 +273,7 @@ elif selection == "Code":
     )
 
     with st.expander("Output:"):
-        st.image("c:/Users/hamid/OneDrive/Desktop/acc-vs-vacc.jpg")
+        st.image("images/acc-vs-vacc.jpg")
 
     st.write("Plotting loss vs validation-loss graph")
     st.code("""
@@ -284,7 +285,7 @@ elif selection == "Code":
     )
 
     with st.expander("Output:"):
-        st.image("c:/Users/hamid/OneDrive/Desktop/loss-vs-vloss.jpg")
+        st.image("images/loss-vs-vloss.jpg")
 
     st.write("Mapping Output values")
     st.code("""
@@ -318,7 +319,7 @@ elif selection == "Code":
                 the image is of class: angry
                 """, language="bash"
         )
-        st.image("c:/Users/hamid/OneDrive/Desktop/testingimg.jpg")
+        st.image("images/testingimg.jpg")
 
     st.write("Testing Accuracy")
     st.code("""
@@ -337,10 +338,12 @@ elif selection == "Code":
                 """, language="bash"
     )
 
-
+# Dataset Page
 elif selection == "Dataset":
     st.html("<center><h1>Sample Images</h1></center><hr>")
-    # Individual Images 
+    # Individual Images
+
+# About Page 
 elif selection == "About":
     st.title("About this App")
     st.image("newplot.jpg", width=750)
