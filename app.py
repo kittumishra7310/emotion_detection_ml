@@ -371,3 +371,46 @@ elif selection == "Dataset":
 # About Page 
 elif selection == "About":
     st.title("About")
+
+footer_html = """
+<style>
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+    button {
+        width: 15em;
+        border: 0;
+        border-color: #fcc;
+        border-radius: 10px;
+        margin: 0 5px; /* Add some space between buttons */
+    }
+    .footer {
+        position: fixed;
+        left: 50%; /* Center horizontally */
+        bottom: 0px; /* Adjust bottom spacing */
+        transform: translateX(-50%); /* Offset to center */
+        width: 92%; /* Set width to auto */
+        background-color: #212529;  
+        text-align: center;
+        padding-top: 10px;
+        border-radius: 10px;
+    }
+    button:hover {
+        border-color: red;
+        color: red;
+    }
+</style>
+<div class="footer">
+    <p><a href="https://github.com/kittumishra7310/emotion_detection_ml"> Github </a> &copy; 2024</p>
+    <p> Collaborators </p>
+    <p>
+        <button><a href="https://www.linkedin.com/in/mukeshmishra0307/">Mukesh Mishra</a></button>
+        <button><a href="https://www.linkedin.com/in/uzayriqbal/">Uzayr Iqbal Hamid</a></button>
+        <button><a href="https://www.linkedin.com/in/pranab-pd-02be/">Pranab Prakash Das</a></button>
+    </p>
+</div>
+"""
+
+st.markdown(footer_html, unsafe_allow_html=True)
+
