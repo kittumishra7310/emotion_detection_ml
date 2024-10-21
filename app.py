@@ -12,6 +12,9 @@ import os
 # Set layout to wide mode
 st.set_page_config(layout="wide")
 
+# Streamlit app title
+st.html("<center><h1>Facial Emotion Recognition</h1></center>")
+
 # Create two columns
 col1, col2 = st.columns([4, 2])
 
@@ -24,9 +27,6 @@ with col1:
     emotions = ('angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral')
     op = {i: emotion for i, emotion in enumerate(emotions)}
 
-    # Streamlit app title
-    st.title("Facial Emotion Recognition")
-
     # Upload an image
     uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
 
@@ -34,6 +34,7 @@ with col1:
 # Add content to the second column (where predictions happen)
 if uploaded_file is not None:
     with col2:
+        st.html("<br><h2>Prediction</h2>")
         # Convert the uploaded file to an OpenCV image
         file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
         image = cv2.imdecode(file_bytes, 1)
@@ -54,6 +55,7 @@ if uploaded_file is not None:
 
         # Make emotion prediction
         pred = np.argmax(model.predict(input_arr))
+    
         predicted_emotion = op[pred]
 
         # Display the predicted emotion
@@ -61,7 +63,8 @@ if uploaded_file is not None:
 
 with col1:
     # After the prediction, display the sample images from the dataset
-    st.markdown("<h3 style='text-align: center;'>Displaying Sample Images from the Dataset</h3>", unsafe_allow_html=True)
+    st.html("<br><br><br><br>")
+    st.markdown("<h3 style='text-align: center;'>Sample Images from the Dataset</h3>", unsafe_allow_html=True)
 
     @st.cache_data
     def load_images_from_directory(directory):
@@ -89,7 +92,6 @@ with col1:
     test_df = load_images_from_directory(test_dir)
 
     # Streamlit App Layout
-    st.title("Image Classification Dataset Viewer")
     st.write(f"Train DataFrame shape: {train_df.shape}")
     st.write(f"Test DataFrame shape: {test_df.shape}")
 
