@@ -340,10 +340,34 @@ elif selection == "Code":
 
 # Dataset Page
 elif selection == "Dataset":
-    st.html("<center><h1>Sample Images</h1></center><hr>")
-    # Individual Images
+        st.html("<center><h1>Data Distribution</h1></center><hr>")
+        st.image("images/newplot.jpg", use_column_width=True)
+        st.html("<center><h1>Sample Images</h1></center><hr>")
+        width = 250
+        st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
+        
+        empty1, col1, empty2, col2, empty3, col3, empty4 = st.columns([0.5, 1, 0.5, 1, 0.5, 1, 0.5])
+
+        # Center-align images in the first column
+        with col1:
+            st.image("images/im0.png", caption="Angry", use_column_width=True)
+            st.image("images/im1.png", caption="Disgusted", use_column_width=True)
+
+        # Center-align images in the second column
+        with col2:
+            st.image("images/im2.png", caption="Fearful", use_column_width=True)
+            st.image("images/im5.png", caption="Surprised", use_column_width=True)
+
+        # Center-align images in the third column
+        with col3:
+            st.image("images/im3.png", caption="Happy", use_column_width=True)
+            st.image("images/im6.png", caption="Sad", use_column_width=True)
+
+        with col2:
+            # Center-align the last image
+            st.image("images/im4.png", caption="Neutral", use_column_width=True)
+    
 
 # About Page 
 elif selection == "About":
-    st.title("About this App")
-    st.image("newplot.jpg", width=750)
+    st.title("About")
