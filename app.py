@@ -13,7 +13,7 @@ import os
 st.set_page_config(layout="wide")
 
 # Create two columns
-col1, col2 = st.columns(2)
+col1, col2 = st.columns([4, 2])
 
 # Add content to the first column
 with col1:
