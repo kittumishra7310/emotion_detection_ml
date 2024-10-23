@@ -1,7 +1,12 @@
-tensorflow==2.17.0
 streamlit==1.39.0
 streamlit-webrtc==0.47.9
+numpy==1.26.4
+opencv-python==4.5.5.64
+opencv-python-headless==4.10.0.84
+pandas==2.2.2
+av==12.3.0
+tensorflow==2.17.0
 seaborn==0.13.2
 scikit-learn==1.5.1
-pandas==2.2.2
 matplotlib==3.9.0
+keras==3.4.1
